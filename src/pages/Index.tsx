@@ -484,10 +484,12 @@ const Index = () => {
                         {standings.map((team) => (
                           <tr 
                             key={team.position}
-                            className={`border-b border-border/50 transition-all duration-200 ${
-                              team.isCurrentTeam 
-                                ? 'bg-gradient-to-r from-primary/20 to-accent/20 hover:from-primary/30 hover:to-accent/30' 
-                                : 'hover:bg-muted/30'
+                            className={`border-b transition-all duration-200 ${
+                              team.position >= 15 && team.position <= 18
+                                ? 'bg-red-500/15 border-red-500/30 hover:bg-red-500/25'
+                                : team.isCurrentTeam 
+                                  ? 'bg-gradient-to-r from-primary/20 to-accent/20 hover:from-primary/30 hover:to-accent/30 border-border/50' 
+                                  : 'hover:bg-muted/30 border-border/50'
                             }`}
                           >
                             <td className="px-6 py-4">
