@@ -81,49 +81,91 @@ const Index = () => {
   const schedule = [
     {
       id: 1,
-      date: "20 октября 2024",
-      time: "19:00",
-      opponent: "ЦСКА",
-      location: "Дом",
+      date: "25 октября 2025",
+      time: "17:30",
+      opponent: "Белые Медведи",
+      location: "Дома",
       status: "upcoming"
     },
     {
       id: 2,
-      date: "23 октября 2024",
-      time: "18:30",
-      opponent: "Ак Барс",
-      location: "Выезд",
+      date: "26 октября 2025",
+      time: "17:30",
+      opponent: "Красная Армия",
+      location: "Дома",
       status: "upcoming"
     },
     {
       id: 3,
-      date: "15 октября 2024",
-      time: "19:00",
-      opponent: "Локомотив",
-      location: "Дом",
-      status: "finished",
-      score: "4:2",
-      result: "win"
+      date: "27 октября 2025",
+      time: "17:30",
+      opponent: "Сибирские снайперы",
+      location: "Дома",
+      status: "upcoming"
     },
     {
       id: 4,
-      date: "12 октября 2024",
-      time: "18:00",
-      opponent: "Торпедо",
-      location: "Выезд",
-      status: "finished",
-      score: "2:3",
-      result: "loss"
+      date: "29 октября 2025",
+      time: "16:30",
+      opponent: "Омские Ястребы",
+      location: "В гостях",
+      status: "upcoming"
     },
     {
       id: 5,
-      date: "8 октября 2024",
-      time: "19:30",
-      opponent: "Авангард",
-      location: "Дом",
-      status: "finished",
-      score: "3:1",
-      result: "win"
+      date: "30 октября 2025",
+      time: "16:30",
+      opponent: "Толпар",
+      location: "В гостях",
+      status: "upcoming"
+    },
+    {
+      id: 6,
+      date: "31 октября 2025",
+      time: "16:30",
+      opponent: "Академия Михайлова",
+      location: "В гостях",
+      status: "upcoming"
+    },
+    {
+      id: 7,
+      date: "7 ноября 2025",
+      time: "18:30",
+      opponent: "Стальные Лисы",
+      location: "Дома",
+      status: "upcoming"
+    },
+    {
+      id: 8,
+      date: "15 ноября 2025",
+      time: "16:30",
+      opponent: "Локо",
+      location: "Дома",
+      status: "upcoming"
+    },
+    {
+      id: 9,
+      date: "18 ноября 2025",
+      time: "18:30",
+      opponent: "Шинник",
+      location: "В гостях",
+      status: "upcoming"
+    },
+    {
+      id: 10,
+      date: "22 ноября 2025",
+      time: "17:30",
+      opponent: "Кузнецкие Медведи",
+      location: "Дома",
+      status: "upcoming"
+    },
+    {
+      id: 11,
+      date: "23 ноября 2025",
+      time: "16:30",
+      opponent: "Алмаз",
+      location: "В гостях",
+      status: "upcoming"
     }
   ];
 
@@ -364,9 +406,7 @@ const Index = () => {
                 Расписание матчей
               </h2>
               <div className="max-w-4xl mx-auto space-y-6">
-                <div>
-                  <h3 className="text-2xl font-bold mb-4 text-primary">Предстоящие матчи</h3>
-                  {schedule.filter(m => m.status === "upcoming").map((match, index) => (
+                {schedule.map((match, index) => (
                     <Card 
                       key={match.id}
                       className="bg-card/50 backdrop-blur-sm border-2 border-primary/50 hover:border-primary transition-all duration-300 mb-4 animate-scale-in"
@@ -387,8 +427,8 @@ const Index = () => {
                                 <Icon name="Swords" size={20} className="text-muted-foreground" />
                                 <span className="text-2xl font-bold">{match.opponent}</span>
                               </div>
-                              <Badge variant={match.location === "Дом" ? "default" : "secondary"}>
-                                <Icon name={match.location === "Дом" ? "Home" : "Plane"} size={14} className="mr-1" />
+                              <Badge variant={match.location === "Дома" ? "default" : "secondary"}>
+                                <Icon name={match.location === "Дома" ? "Home" : "Plane"} size={14} className="mr-1" />
                                 {match.location}
                               </Badge>
                             </div>
@@ -396,45 +436,7 @@ const Index = () => {
                         </div>
                       </div>
                     </Card>
-                  ))}
-                </div>
-
-                <div>
-                  <h3 className="text-2xl font-bold mb-4 text-muted-foreground">Прошедшие матчи</h3>
-                  {schedule.filter(m => m.status === "finished").map((match, index) => (
-                    <Card 
-                      key={match.id}
-                      className="bg-card/50 backdrop-blur-sm border-2 border-border hover:border-primary transition-all duration-300 mb-4 animate-scale-in"
-                      style={{ animationDelay: `${0.1 * index}s`, animationFillMode: 'both' }}
-                    >
-                      <div className="p-6">
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-6">
-                            <div className="text-center">
-                              <div className="text-sm text-muted-foreground mb-1">Дата</div>
-                              <div className="font-bold text-sm">{match.date}</div>
-                            </div>
-                            <div className="w-px h-12 bg-border" />
-                            <div>
-                              <div className="flex items-center gap-3">
-                                <span className="text-xl font-bold">SKA 1946</span>
-                                <span className={`text-2xl font-bold px-3 py-1 rounded ${
-                                  match.result === "win" ? "bg-green-500/20 text-green-500" : "bg-red-500/20 text-red-500"
-                                }`}>
-                                  {match.score}
-                                </span>
-                                <span className="text-xl font-bold">{match.opponent}</span>
-                              </div>
-                            </div>
-                          </div>
-                          <Badge variant={match.location === "Дом" ? "default" : "secondary"}>
-                            {match.location}
-                          </Badge>
-                        </div>
-                      </div>
-                    </Card>
-                  ))}
-                </div>
+                ))}
               </div>
             </div>
           )}
