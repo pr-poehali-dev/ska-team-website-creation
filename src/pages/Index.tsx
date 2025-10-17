@@ -10,11 +10,11 @@ const Index = () => {
   const [isDarkTheme, setIsDarkTheme] = useState(true);
 
   const players = [
-    { number: 43, name: "BAGA", position: "GK", fullPosition: "Вратарь", games: 18, saves: 312, goalsAgainst: 41 },
-    { number: 16, name: "KEWS1K", position: "PD", fullPosition: "Правый защитник", games: 18, goals: 3, assists: 8 },
-    { number: 12, name: "extazy", position: "LD", fullPosition: "Левый защитник", games: 18, goals: 2, assists: 12 },
-    { number: 7, name: "F", position: "CW", fullPosition: "Центральный нападающий", games: 18, goals: 15, assists: 9 },
-    { number: 17, name: "max", position: "PW", fullPosition: "Правый нападающий", games: 18, goals: 11, assists: 7 }
+    { number: 43, name: "BAGA", position: "GK", fullPosition: "Вратарь", games: 2, saves: 312, goalsAgainst: 41, wins: 0, savePercentage: "50%" },
+    { number: 16, name: "KEWS1K", position: "PD", fullPosition: "Правый защитник", games: 3, goals: 0, assists: 0 },
+    { number: 12, name: "extazy", position: "LD", fullPosition: "Левый защитник", games: 5, goals: 0, assists: 2 },
+    { number: 7, name: "F", position: "CW", fullPosition: "Центральный нападающий", games: 5, goals: 4, assists: 3 },
+    { number: 17, name: "max", position: "PW", fullPosition: "Правый нападающий", games: 5, goals: 1, assists: 0 }
   ];
 
   const news = [
@@ -187,12 +187,17 @@ const Index = () => {
     <div className={`min-h-screen transition-colors duration-300 ${
       isDarkTheme 
         ? "bg-gradient-to-b from-background to-muted" 
-        : "bg-gradient-to-b from-white to-gray-100"
+        : "bg-gradient-to-br from-blue-50 via-white to-red-50"
     }`}>
-      {isDarkTheme && (
+      {isDarkTheme ? (
         <>
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(96,165,250,0.15),transparent_50%)]" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(239,68,68,0.15),transparent_50%)]" />
+        </>
+      ) : (
+        <>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.12),transparent_50%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(239,68,68,0.12),transparent_50%)]" />
         </>
       )}
       
@@ -226,7 +231,7 @@ const Index = () => {
                 <Badge variant="outline" className="border-primary text-primary">
                   <Icon name="Trophy" size={14} className="mr-1" />13 место
                 </Badge>
-                <Badge variant="outline" className="border-accent text-accent">
+                <Badge variant="outline" className="border-primary text-primary">
                   6 очков
                 </Badge>
               </div>
@@ -356,7 +361,9 @@ const Index = () => {
                     style={{ animationDelay: `${0.1 * index}s`, animationFillMode: 'both' }}
                   >
                     <div className="p-6 relative">
-                      <div className="absolute top-0 right-0 text-8xl font-bold text-primary/5 group-hover:text-primary/10 transition-colors font-montserrat">
+                      <div className={`absolute top-0 right-0 text-8xl font-bold transition-colors font-montserrat ${
+                        isDarkTheme ? "text-primary/5 group-hover:text-primary/10" : "text-gray-200 group-hover:text-gray-300"
+                      }`}>
                         {player.number}
                       </div>
                       <div className="relative z-10">
@@ -366,7 +373,7 @@ const Index = () => {
                           </div>
                           <div>
                             <h3 className={`text-2xl font-bold font-montserrat ${isDarkTheme ? "text-foreground" : "text-gray-900"}`}>{player.name}</h3>
-                            <p className="text-sm text-accent font-semibold">{player.position}</p>
+                            <p className={`text-sm font-semibold ${isDarkTheme ? "text-gray-400" : "text-gray-500"}`}>{player.position}</p>
                           </div>
                         </div>
                         <div className="space-y-2 pt-4 border-t border-border/50">
@@ -379,14 +386,14 @@ const Index = () => {
                             {player.position === "GK" ? (
                               <>
                                 <div className="bg-muted/50 rounded-lg p-2">
-                                  <div className={`text-xs mb-1 ${isDarkTheme ? "text-muted-foreground" : "text-gray-600"}`}>Сэйвы</div>
-                                  <div className={`text-lg font-bold ${isDarkTheme ? "text-foreground" : "text-gray-900"}`}>{player.saves}</div>
+                                  <div className={`text-xs mb-1 ${isDarkTheme ? "text-muted-foreground" : "text-gray-600"}`}>Победы</div>
+                                  <div className={`text-lg font-bold ${isDarkTheme ? "text-foreground" : "text-gray-900"}`}>{player.wins}</div>
                                 </div>
                                 <div className="bg-muted/50 rounded-lg p-2">
-                                  <div className={`text-xs mb-1 ${isDarkTheme ? "text-muted-foreground" : "text-gray-600"}`}>Проп.</div>
-                                  <div className={`text-lg font-bold ${isDarkTheme ? "text-foreground" : "text-gray-900"}`}>{player.goalsAgainst}</div>
+                                  <div className={`text-xs mb-1 ${isDarkTheme ? "text-muted-foreground" : "text-gray-600"}`}>% Отражений</div>
+                                  <div className={`text-lg font-bold ${isDarkTheme ? "text-foreground" : "text-gray-900"}`}>{player.savePercentage}</div>
                                 </div>
-                              <>
+                              </>
                             ) : (
                               <>
                                 <div className="bg-muted/50 rounded-lg p-2">
@@ -394,7 +401,7 @@ const Index = () => {
                                   <div className={`text-lg font-bold ${isDarkTheme ? "text-foreground" : "text-gray-900"}`}>{player.goals}</div>
                                 </div>
                                 <div className="bg-muted/50 rounded-lg p-2">
-                                  <div className={`text-xs mb-1 ${isDarkTheme ? "text-muted-foreground" : "text-gray-600"}`}>Пасы</div>
+                                  <div className={`text-xs mb-1 ${isDarkTheme ? "text-muted-foreground" : "text-gray-600"}`}>Передачи</div>
                                   <div className={`text-lg font-bold ${isDarkTheme ? "text-foreground" : "text-gray-900"}`}>{player.assists}</div>
                                 </div>
                               </>
@@ -443,6 +450,15 @@ const Index = () => {
                               </Badge>
                             </div>
                           </div>
+                          <a 
+                            href="https://t.me/+spYGPssgQFQ1ODY6" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-colors"
+                          >
+                            <Icon name="Ticket" size={20} />
+                            Купить билет
+                          </a>
                         </div>
                       </div>
                     </Card>
@@ -479,10 +495,12 @@ const Index = () => {
                         {standings.map((team) => (
                           <tr 
                             key={team.position}
-                            className={`border-b border-border/50 transition-all duration-200 ${
-                              team.isCurrentTeam 
-                                ? 'bg-gradient-to-r from-primary/20 to-accent/20 hover:from-primary/30 hover:to-accent/30' 
-                                : 'hover:bg-muted/30'
+                            className={`border-b transition-all duration-200 ${
+                              team.position >= 15 && team.position <= 18
+                                ? 'bg-red-500/15 border-red-500/30 hover:bg-red-500/25'
+                                : team.isCurrentTeam 
+                                  ? 'bg-gradient-to-r from-primary/20 to-accent/20 hover:from-primary/30 hover:to-accent/30 border-border/50' 
+                                  : 'hover:bg-muted/30 border-border/50'
                             }`}
                           >
                             <td className="px-6 py-4">
