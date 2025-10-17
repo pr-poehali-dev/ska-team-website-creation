@@ -573,9 +573,7 @@ const Index = () => {
                         <a 
                           href="mailto:info@ska1946.ru" 
                           className="text-primary hover:underline"
-                        >
-                          info@ska1946.ru
-                        </a>
+                        >https://t.me/SKA1946VFHL</a>
                       </div>
                     </div>
 
