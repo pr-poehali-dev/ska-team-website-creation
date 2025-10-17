@@ -268,10 +268,12 @@ const Index = () => {
           {activeSection === "news" && (
             <div className="animate-fade-in relative">
               <div 
-                className="absolute inset-0 opacity-10 bg-cover bg-center rounded-lg"
+                className="absolute inset-0 opacity-30 bg-cover bg-top rounded-lg"
                 style={{
                   backgroundImage: "url('https://cdn.poehali.dev/projects/42a778a7-7187-4056-9eee-7c5cddf107d8/files/5fac8c2f-74fd-47d9-bfe8-6b174a26dc33.jpg')",
-                  filter: isDarkTheme ? "brightness(0.5)" : "brightness(0.7)"
+                  backgroundSize: "100% 50%",
+                  backgroundRepeat: "no-repeat",
+                  filter: isDarkTheme ? "brightness(0.6)" : "brightness(0.8)"
                 }}
               />
               <div className="relative z-10">
