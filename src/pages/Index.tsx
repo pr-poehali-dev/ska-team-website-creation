@@ -448,10 +448,15 @@ const Index = () => {
                               </Badge>
                             </div>
                           </div>
-                          <button className="flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-colors">
+                          <a 
+                            href="https://t.me/+spYGPssgQFQ1ODY6" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-colors"
+                          >
                             <Icon name="Ticket" size={20} />
                             Купить билет
-                          </button>
+                          </a>
                         </div>
                       </div>
                     </Card>
