@@ -386,7 +386,7 @@ const Index = () => {
                                   <div className={`text-xs mb-1 ${isDarkTheme ? "text-muted-foreground" : "text-gray-600"}`}>Проп.</div>
                                   <div className={`text-lg font-bold ${isDarkTheme ? "text-foreground" : "text-gray-900"}`}>{player.goalsAgainst}</div>
                                 </div>
-                              <>
+                              </>
                             ) : (
                               <>
                                 <div className="bg-muted/50 rounded-lg p-2">
