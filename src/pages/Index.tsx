@@ -312,7 +312,7 @@ const Index = () => {
                             {transfer.type === "in" ? (
                               <span className="text-sm">из {transfer.from}</span>
                             ) : (
-                              <span className="text-sm">в {transfer.to}</span>
+                              <span className="text-sm">уход</span>
                             )}
                           </div>
                         </div>
