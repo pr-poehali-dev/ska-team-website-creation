@@ -187,12 +187,17 @@ const Index = () => {
     <div className={`min-h-screen transition-colors duration-300 ${
       isDarkTheme 
         ? "bg-gradient-to-b from-background to-muted" 
-        : "bg-gradient-to-b from-white to-gray-100"
+        : "bg-gradient-to-br from-blue-50 via-white to-red-50"
     }`}>
-      {isDarkTheme && (
+      {isDarkTheme ? (
         <>
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(96,165,250,0.15),transparent_50%)]" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(239,68,68,0.15),transparent_50%)]" />
+        </>
+      ) : (
+        <>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.12),transparent_50%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(239,68,68,0.12),transparent_50%)]" />
         </>
       )}
       
