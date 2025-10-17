@@ -361,7 +361,9 @@ const Index = () => {
                     style={{ animationDelay: `${0.1 * index}s`, animationFillMode: 'both' }}
                   >
                     <div className="p-6 relative">
-                      <div className="absolute top-0 right-0 text-8xl font-bold text-primary/5 group-hover:text-primary/10 transition-colors font-montserrat">
+                      <div className={`absolute top-0 right-0 text-8xl font-bold transition-colors font-montserrat ${
+                        isDarkTheme ? "text-primary/5 group-hover:text-primary/10" : "text-gray-200 group-hover:text-gray-300"
+                      }`}>
                         {player.number}
                       </div>
                       <div className="relative z-10">
