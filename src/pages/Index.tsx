@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Icon from "@/components/ui/icon";
 
-type Section = "news" | "transfers" | "roster" | "schedule" | "standings";
+type Section = "news" | "transfers" | "roster" | "schedule" | "standings" | "contacts";
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState<Section>("news");
@@ -180,7 +180,8 @@ const Index = () => {
     { id: "transfers" as Section, label: "Трансферы", icon: "ArrowLeftRight" },
     { id: "roster" as Section, label: "Состав", icon: "Users" },
     { id: "schedule" as Section, label: "Расписание", icon: "Calendar" },
-    { id: "standings" as Section, label: "Таблица", icon: "Award" }
+    { id: "standings" as Section, label: "Таблица", icon: "Award" },
+    { id: "contacts" as Section, label: "Контакты", icon: "Phone" }
   ];
 
   return (
@@ -531,6 +532,64 @@ const Index = () => {
                         ))}
                       </tbody>
                     </table>
+                  </div>
+                </Card>
+              </div>
+            </div>
+          )}
+
+          {activeSection === "contacts" && (
+            <div className="animate-fade-in">
+              <h2 className={`text-4xl font-bold mb-8 font-montserrat flex items-center gap-3 ${isDarkTheme ? "text-foreground" : "text-gray-900"}`}>
+                <Icon name="Phone" size={36} className="text-primary" />
+                Контакты
+              </h2>
+              <div className="max-w-3xl mx-auto">
+                <Card className={`backdrop-blur-sm border-2 border-primary/50 ${isDarkTheme ? "bg-card text-card-foreground" : "bg-white text-gray-900"}`}>
+                  <div className="p-8 space-y-6">
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                        <Icon name="Send" size={24} className="text-primary" />
+                      </div>
+                      <div>
+                        <h3 className={`text-xl font-bold mb-2 ${isDarkTheme ? "text-foreground" : "text-gray-900"}`}>Telegram</h3>
+                        <a 
+                          href="https://t.me/+spYGPssgQFQ1ODY6" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-primary hover:underline"
+                        >
+                          Наш Telegram-канал
+                        </a>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                        <Icon name="Mail" size={24} className="text-primary" />
+                      </div>
+                      <div>
+                        <h3 className={`text-xl font-bold mb-2 ${isDarkTheme ? "text-foreground" : "text-gray-900"}`}>Email</h3>
+                        <a 
+                          href="mailto:info@ska1946.ru" 
+                          className="text-primary hover:underline"
+                        >
+                          info@ska1946.ru
+                        </a>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                        <Icon name="MapPin" size={24} className="text-primary" />
+                      </div>
+                      <div>
+                        <h3 className={`text-xl font-bold mb-2 ${isDarkTheme ? "text-foreground" : "text-gray-900"}`}>Адрес</h3>
+                        <p className={isDarkTheme ? "text-muted-foreground" : "text-gray-600"}>
+                          Ледовая арена, г. Санкт-Петербург
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </Card>
               </div>
