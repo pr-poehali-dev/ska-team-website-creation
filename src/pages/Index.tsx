@@ -231,7 +231,7 @@ const Index = () => {
                 <Badge variant="outline" className="border-primary text-primary">
                   <Icon name="Trophy" size={14} className="mr-1" />13 место
                 </Badge>
-                <Badge variant="outline" className="border-accent text-accent">
+                <Badge variant="outline" className="border-primary text-primary">
                   6 очков
                 </Badge>
               </div>
