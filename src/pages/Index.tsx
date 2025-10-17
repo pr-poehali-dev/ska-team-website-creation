@@ -558,9 +558,7 @@ const Index = () => {
                           target="_blank" 
                           rel="noopener noreferrer"
                           className="text-primary hover:underline"
-                        >
-                          Наш Telegram-канал
-                        </a>
+                        >https://t.me/SKA1946VFHL</a>
                       </div>
                     </div>
 
