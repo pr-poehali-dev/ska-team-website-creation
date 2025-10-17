@@ -46,7 +46,7 @@ const Index = () => {
   const transfers = [
     {
       id: 1,
-      player: "max",
+      player: "rundya",
       type: "in",
       from: "Молодежка СКА",
       date: "1 сентября 2024",
