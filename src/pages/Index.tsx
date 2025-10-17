@@ -7,6 +7,7 @@ type Section = "news" | "transfers" | "roster" | "schedule" | "standings";
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState<Section>("news");
+  const [isDarkTheme, setIsDarkTheme] = useState(true);
 
   const players = [
     { number: 43, name: "BAGA", position: "GK", fullPosition: "Вратарь", games: 18, saves: 312, goalsAgainst: 41 },
@@ -183,12 +184,22 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(96,165,250,0.15),transparent_50%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(239,68,68,0.15),transparent_50%)]" />
+    <div className={`min-h-screen transition-colors duration-300 ${
+      isDarkTheme 
+        ? "bg-gradient-to-b from-background to-muted" 
+        : "bg-gradient-to-b from-white to-gray-100"
+    }`}>
+      {isDarkTheme && (
+        <>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(96,165,250,0.15),transparent_50%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(239,68,68,0.15),transparent_50%)]" />
+        </>
+      )}
       
       <div className="relative">
-        <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border/50">
+        <header className={`sticky top-0 z-50 backdrop-blur-lg border-b transition-colors ${
+          isDarkTheme ? "bg-background/80 border-border/50" : "bg-white/80 border-gray-200"
+        }`}>
           <div className="container mx-auto px-4">
             <div className="flex items-center justify-between py-4">
               <div className="flex items-center gap-3">
@@ -201,6 +212,17 @@ const Index = () => {
                 </div>
               </div>
               <div className="flex items-center gap-4">
+                <button
+                  onClick={() => setIsDarkTheme(!isDarkTheme)}
+                  className={`p-2 rounded-lg transition-colors ${
+                    isDarkTheme 
+                      ? "bg-muted hover:bg-muted/80" 
+                      : "bg-gray-200 hover:bg-gray-300"
+                  }`}
+                  aria-label="Переключить тему"
+                >
+                  <Icon name={isDarkTheme ? "Sun" : "Moon"} size={20} className={isDarkTheme ? "text-foreground" : "text-gray-800"} />
+                </button>
                 <Badge variant="outline" className="border-primary text-primary">
                   <Icon name="Trophy" size={14} className="mr-1" />13 место
                 </Badge>
@@ -212,7 +234,9 @@ const Index = () => {
           </div>
         </header>
 
-        <nav className="sticky top-[89px] z-40 bg-card/50 backdrop-blur-lg border-b border-border/50">
+        <nav className={`sticky top-[89px] z-40 backdrop-blur-lg border-b transition-colors ${
+          isDarkTheme ? "bg-card/50 border-border/50" : "bg-white/50 border-gray-200"
+        }`}>
           <div className="container mx-auto px-4">
             <div className="flex items-center gap-2 overflow-x-auto py-3">
               {menuItems.map((item) => (
@@ -222,7 +246,9 @@ const Index = () => {
                   className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all duration-200 whitespace-nowrap ${
                     activeSection === item.id
                       ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
-                      : "hover:bg-muted text-muted-foreground hover:text-foreground"
+                      : isDarkTheme 
+                        ? "hover:bg-muted text-muted-foreground hover:text-foreground"
+                        : "hover:bg-gray-100 text-gray-600 hover:text-gray-900"
                   }`}
                 >
                   <Icon name={item.icon as any} size={18} />
