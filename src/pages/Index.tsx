@@ -49,7 +49,7 @@ const Index = () => {
       player: "dangel",
       type: "in",
       from: "Динамо М",
-      date: "25 августа 2024",
+      date: "12.10.25",
       position: "LD"
     },
     {
