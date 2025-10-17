@@ -10,11 +10,11 @@ const Index = () => {
   const [isDarkTheme, setIsDarkTheme] = useState(true);
 
   const players = [
-    { number: 43, name: "BAGA", position: "GK", fullPosition: "Вратарь", games: 18, saves: 312, goalsAgainst: 41 },
-    { number: 16, name: "KEWS1K", position: "PD", fullPosition: "Правый защитник", games: 18, goals: 3, assists: 8 },
-    { number: 12, name: "extazy", position: "LD", fullPosition: "Левый защитник", games: 18, goals: 2, assists: 12 },
-    { number: 7, name: "F", position: "CW", fullPosition: "Центральный нападающий", games: 18, goals: 15, assists: 9 },
-    { number: 17, name: "max", position: "PW", fullPosition: "Правый нападающий", games: 18, goals: 11, assists: 7 }
+    { number: 43, name: "BAGA", position: "GK", fullPosition: "Вратарь", games: 2, saves: 312, goalsAgainst: 41, wins: 0, savePercentage: "50%" },
+    { number: 16, name: "KEWS1K", position: "PD", fullPosition: "Правый защитник", games: 3, goals: 0, assists: 0 },
+    { number: 12, name: "extazy", position: "LD", fullPosition: "Левый защитник", games: 5, goals: 0, assists: 2 },
+    { number: 7, name: "F", position: "CW", fullPosition: "Центральный нападающий", games: 5, goals: 4, assists: 3 },
+    { number: 17, name: "max", position: "PW", fullPosition: "Правый нападающий", games: 5, goals: 1, assists: 0 }
   ];
 
   const news = [
@@ -384,12 +384,12 @@ const Index = () => {
                             {player.position === "GK" ? (
                               <>
                                 <div className="bg-muted/50 rounded-lg p-2">
-                                  <div className={`text-xs mb-1 ${isDarkTheme ? "text-muted-foreground" : "text-gray-600"}`}>Сэйвы</div>
-                                  <div className={`text-lg font-bold ${isDarkTheme ? "text-foreground" : "text-gray-900"}`}>{player.saves}</div>
+                                  <div className={`text-xs mb-1 ${isDarkTheme ? "text-muted-foreground" : "text-gray-600"}`}>Победы</div>
+                                  <div className={`text-lg font-bold ${isDarkTheme ? "text-foreground" : "text-gray-900"}`}>{player.wins}</div>
                                 </div>
                                 <div className="bg-muted/50 rounded-lg p-2">
-                                  <div className={`text-xs mb-1 ${isDarkTheme ? "text-muted-foreground" : "text-gray-600"}`}>Проп.</div>
-                                  <div className={`text-lg font-bold ${isDarkTheme ? "text-foreground" : "text-gray-900"}`}>{player.goalsAgainst}</div>
+                                  <div className={`text-xs mb-1 ${isDarkTheme ? "text-muted-foreground" : "text-gray-600"}`}>% Отражений</div>
+                                  <div className={`text-lg font-bold ${isDarkTheme ? "text-foreground" : "text-gray-900"}`}>{player.savePercentage}</div>
                                 </div>
                               </>
                             ) : (
@@ -399,7 +399,7 @@ const Index = () => {
                                   <div className={`text-lg font-bold ${isDarkTheme ? "text-foreground" : "text-gray-900"}`}>{player.goals}</div>
                                 </div>
                                 <div className="bg-muted/50 rounded-lg p-2">
-                                  <div className={`text-xs mb-1 ${isDarkTheme ? "text-muted-foreground" : "text-gray-600"}`}>Пасы</div>
+                                  <div className={`text-xs mb-1 ${isDarkTheme ? "text-muted-foreground" : "text-gray-600"}`}>Передачи</div>
                                   <div className={`text-lg font-bold ${isDarkTheme ? "text-foreground" : "text-gray-900"}`}>{player.assists}</div>
                                 </div>
                               </>
