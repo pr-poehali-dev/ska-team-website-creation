@@ -192,7 +192,7 @@ const Index = () => {
           <div className="container mx-auto px-4">
             <div className="flex items-center justify-between py-4">
               <div className="flex items-center gap-3">
-                <img src="https://i.imgur.com/dNCkqwI.png" alt="" className="w-10 h-10 object-contain" />
+                <img src="https://static.flashscore.com/res/image/data/nZidJKXg-jwu9Rcr4-fqMaIwHk.png" alt="" className="w-10 h-10 object-contain" />
                 <div>
                   <h1 className="text-3xl font-bold font-montserrat bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                     SKA 1946
