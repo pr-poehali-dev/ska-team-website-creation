@@ -128,18 +128,24 @@ const Index = () => {
   ];
 
   const standings = [
-    { position: 1, team: "Северсталь", games: 18, wins: 14, losses: 4, points: 42 },
-    { position: 2, team: "Металлург Мг", games: 18, wins: 13, losses: 5, points: 39 },
-    { position: 3, team: "Динамо М", games: 18, wins: 12, losses: 6, points: 36 },
-    { position: 4, team: "ЦСКА", games: 18, wins: 11, losses: 7, points: 33 },
-    { position: 5, team: "Ак Барс", games: 18, wins: 10, losses: 8, points: 30 },
-    { position: 6, team: "Авангард", games: 18, wins: 10, losses: 8, points: 30 },
-    { position: 7, team: "Торпедо", games: 18, wins: 9, losses: 9, points: 27 },
-    { position: 8, team: "Локомотив", games: 18, wins: 8, losses: 10, points: 24 },
-    { position: 9, team: "SKA 1946", games: 18, wins: 7, losses: 11, points: 21, isCurrentTeam: true },
-    { position: 10, team: "Салават Юлаев", games: 18, wins: 6, losses: 12, points: 18 },
-    { position: 11, team: "Спартак", games: 18, wins: 5, losses: 13, points: 15 },
-    { position: 12, team: "Амур", games: 18, wins: 4, losses: 14, points: 12 }
+    { position: 1, team: "Красная Армия", games: 10, wins: 8, winsOT: 0, lossesOT: 1, losses: 1, goalsFor: 23, goalsAgainst: 9, points: 17 },
+    { position: 2, team: "Тюменский Легион", games: 11, wins: 6, winsOT: 1, lossesOT: 0, losses: 3, goalsFor: 24, goalsAgainst: 11, points: 16 },
+    { position: 3, team: "Сибирские снайперы", games: 12, wins: 7, winsOT: 0, lossesOT: 0, losses: 4, goalsFor: 24, goalsAgainst: 13, points: 15 },
+    { position: 4, team: "Динамо-Шинник", games: 8, wins: 5, winsOT: 1, lossesOT: 0, losses: 1, goalsFor: 21, goalsAgainst: 10, points: 14 },
+    { position: 5, team: "Толпар", games: 10, wins: 5, winsOT: 0, lossesOT: 0, losses: 3, goalsFor: 26, goalsAgainst: 14, points: 13 },
+    { position: 6, team: "Стальные Лисы", games: 7, wins: 6, winsOT: 0, lossesOT: 0, losses: 1, goalsFor: 14, goalsAgainst: 6, points: 12 },
+    { position: 7, team: "МХК Спартак", games: 5, wins: 4, winsOT: 0, lossesOT: 0, losses: 1, goalsFor: 12, goalsAgainst: 3, points: 8 },
+    { position: 8, team: "Мамонты Югры", games: 5, wins: 3, winsOT: 1, lossesOT: 0, losses: 1, goalsFor: 10, goalsAgainst: 6, points: 8 },
+    { position: 9, team: "Академия Михайлова", games: 7, wins: 3, winsOT: 1, lossesOT: 0, losses: 3, goalsFor: 9, goalsAgainst: 8, points: 8 },
+    { position: 10, team: "Локо", games: 8, wins: 3, winsOT: 0, lossesOT: 1, losses: 4, goalsFor: 19, goalsAgainst: 24, points: 7 },
+    { position: 11, team: "Омские Ястребы", games: 10, wins: 3, winsOT: 0, lossesOT: 0, losses: 7, goalsFor: 13, goalsAgainst: 18, points: 6 },
+    { position: 12, team: "МХК Динамо СПб", games: 8, wins: 1, winsOT: 0, lossesOT: 1, losses: 4, goalsFor: 10, goalsAgainst: 17, points: 6 },
+    { position: 13, team: "СКА 19-46", games: 7, wins: 3, winsOT: 0, lossesOT: 0, losses: 4, goalsFor: 6, goalsAgainst: 12, points: 6, isCurrentTeam: true },
+    { position: 14, team: "Кузнецкие Медведи", games: 9, wins: 2, winsOT: 0, lossesOT: 0, losses: 7, goalsFor: 7, goalsAgainst: 20, points: 4 },
+    { position: 15, team: "Чайка", games: 4, wins: 1, winsOT: 0, lossesOT: 1, losses: 2, goalsFor: 5, goalsAgainst: 9, points: 3 },
+    { position: 16, team: "Белые Медведи", games: 8, wins: 1, winsOT: 0, lossesOT: 0, losses: 6, goalsFor: 4, goalsAgainst: 20, points: 3 },
+    { position: 17, team: "Крылья Советов", games: 2, wins: 1, winsOT: 0, lossesOT: 0, losses: 1, goalsFor: 2, goalsAgainst: 2, points: 2 },
+    { position: 18, team: "Алмаз", games: 9, wins: 0, winsOT: 0, lossesOT: 0, losses: 9, goalsFor: 0, goalsAgainst: 0, points: 0 }
   ];
 
   const menuItems = [
@@ -170,10 +176,10 @@ const Index = () => {
               </div>
               <div className="flex items-center gap-4">
                 <Badge variant="outline" className="border-primary text-primary">
-                  <Icon name="Trophy" size={14} className="mr-1" />9 место
+                  <Icon name="Trophy" size={14} className="mr-1" />13 место
                 </Badge>
                 <Badge variant="outline" className="border-accent text-accent">
-                  21 очко
+                  6 очков
                 </Badge>
               </div>
             </div>
@@ -445,11 +451,15 @@ const Index = () => {
                     <table className="w-full">
                       <thead className="bg-muted/50">
                         <tr className="border-b-2 border-border">
-                          <th className="px-6 py-4 text-left text-sm font-bold text-foreground/80 uppercase tracking-wider">Место</th>
+                          <th className="px-6 py-4 text-left text-sm font-bold text-foreground/80 uppercase tracking-wider">#</th>
                           <th className="px-6 py-4 text-left text-sm font-bold text-foreground/80 uppercase tracking-wider">Команда</th>
                           <th className="px-6 py-4 text-center text-sm font-bold text-foreground/80 uppercase tracking-wider">И</th>
                           <th className="px-6 py-4 text-center text-sm font-bold text-foreground/80 uppercase tracking-wider">В</th>
+                          <th className="px-6 py-4 text-center text-sm font-bold text-foreground/80 uppercase tracking-wider">ВО</th>
+                          <th className="px-6 py-4 text-center text-sm font-bold text-foreground/80 uppercase tracking-wider">ПО</th>
                           <th className="px-6 py-4 text-center text-sm font-bold text-foreground/80 uppercase tracking-wider">П</th>
+                          <th className="px-6 py-4 text-center text-sm font-bold text-foreground/80 uppercase tracking-wider">ШЗ</th>
+                          <th className="px-6 py-4 text-center text-sm font-bold text-foreground/80 uppercase tracking-wider">ШП</th>
                           <th className="px-6 py-4 text-center text-sm font-bold text-foreground/80 uppercase tracking-wider">О</th>
                         </tr>
                       </thead>
@@ -477,7 +487,11 @@ const Index = () => {
                             </td>
                             <td className="px-6 py-4 text-center text-muted-foreground">{team.games}</td>
                             <td className="px-6 py-4 text-center text-muted-foreground">{team.wins}</td>
+                            <td className="px-6 py-4 text-center text-muted-foreground">{team.winsOT}</td>
+                            <td className="px-6 py-4 text-center text-muted-foreground">{team.lossesOT}</td>
                             <td className="px-6 py-4 text-center text-muted-foreground">{team.losses}</td>
+                            <td className="px-6 py-4 text-center text-muted-foreground">{team.goalsFor}</td>
+                            <td className="px-6 py-4 text-center text-muted-foreground">{team.goalsAgainst}</td>
                             <td className="px-6 py-4 text-center">
                               <span className={`font-bold ${team.isCurrentTeam ? 'text-primary text-lg' : 'text-foreground'}`}>
                                 {team.points}
