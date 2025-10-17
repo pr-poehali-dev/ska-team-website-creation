@@ -41,7 +41,7 @@ const Index = () => {
       player: "rundya",
       type: "in",
       from: "Молодежка СКА",
-      date: "1 сентября 2024",
+      date: "12.10.25",
       position: "PW"
     },
     {
