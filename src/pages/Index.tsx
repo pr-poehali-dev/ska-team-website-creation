@@ -192,7 +192,7 @@ const Index = () => {
           <div className="container mx-auto px-4">
             <div className="flex items-center justify-between py-4">
               <div className="flex items-center gap-3">
-                <Icon name="Shield" size={40} className="text-primary" />
+                <img src="https://i.imgur.com/dNCkqwI.png" alt="SKA 1946 Logo" className="w-10 h-10 object-contain" />
                 <div>
                   <h1 className="text-3xl font-bold font-montserrat bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                     SKA 1946
