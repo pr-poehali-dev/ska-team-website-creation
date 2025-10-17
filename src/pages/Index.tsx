@@ -62,7 +62,7 @@ const Index = () => {
     },
     {
       id: 3,
-      player: "Петров А.",
+      player: "alexy",
       type: "out",
       to: "Торпедо",
       date: "20 августа 2024",
