@@ -7,6 +7,7 @@ type Section = "news" | "transfers" | "roster" | "schedule" | "standings";
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState<Section>("news");
+  const [isDarkTheme, setIsDarkTheme] = useState(true);
 
   const players = [
     { number: 43, name: "BAGA", position: "GK", fullPosition: "Вратарь", games: 18, saves: 312, goalsAgainst: 41 },
@@ -32,14 +33,6 @@ const Index = () => {
       category: "Товарищеский матч",
       content: "В товарищеском матче команда СКА 1946 уступила Динамо-Шинник со счетом 1:4. Несмотря на результат, игра дала ценный опыт для дальнейшего развития команды",
       image: "🥅"
-    },
-    {
-      id: 3,
-      title: "Новое пополнение в составе СКА 1946",
-      date: "11.10.2025",
-      category: "Трансфер",
-      content: "Команда СКА 1946 объявляет о подписании нового игрока! Под номером 97 в наш состав присоединился vasilev. Добро пожаловать в команду!",
-      image: "⭐"
     }
   ];
 
@@ -49,7 +42,7 @@ const Index = () => {
       player: "rundya",
       type: "in",
       from: "Молодежка СКА",
-      date: "1 сентября 2024",
+      date: "12.10.25",
       position: "PW"
     },
     {
@@ -57,7 +50,7 @@ const Index = () => {
       player: "dangel",
       type: "in",
       from: "Динамо М",
-      date: "25 августа 2024",
+      date: "12.10.25",
       position: "LD"
     },
     {
@@ -65,7 +58,7 @@ const Index = () => {
       player: "alexy",
       type: "out",
       to: "Торпедо",
-      date: "20 августа 2024",
+      date: "10.10.25",
       position: "RW"
     }
   ];
@@ -191,24 +184,45 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(96,165,250,0.15),transparent_50%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(239,68,68,0.15),transparent_50%)]" />
+    <div className={`min-h-screen transition-colors duration-300 ${
+      isDarkTheme 
+        ? "bg-gradient-to-b from-background to-muted" 
+        : "bg-gradient-to-b from-white to-gray-100"
+    }`}>
+      {isDarkTheme && (
+        <>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(96,165,250,0.15),transparent_50%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(239,68,68,0.15),transparent_50%)]" />
+        </>
+      )}
       
       <div className="relative">
-        <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border/50">
+        <header className={`sticky top-0 z-50 backdrop-blur-lg border-b transition-colors ${
+          isDarkTheme ? "bg-background/80 border-border/50" : "bg-white/80 border-gray-200"
+        }`}>
           <div className="container mx-auto px-4">
             <div className="flex items-center justify-between py-4">
               <div className="flex items-center gap-3">
-                <Icon name="Shield" size={40} className="text-primary" />
+                <img src="https://static.flashscore.com/res/image/data/nZidJKXg-jwu9Rcr4-fqMaIwHk.png" alt="" className="w-24 h-24 object-contain" />
                 <div>
                   <h1 className="text-3xl font-bold font-montserrat bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                     SKA 1946
                   </h1>
-                  <p className="text-sm text-muted-foreground">VFHL|PUCK League</p>
+                  <p className={`text-sm ${isDarkTheme ? "text-muted-foreground" : "text-gray-600"}`}>VFHL|PUCK League</p>
                 </div>
               </div>
               <div className="flex items-center gap-4">
+                <button
+                  onClick={() => setIsDarkTheme(!isDarkTheme)}
+                  className={`p-2 rounded-lg transition-colors ${
+                    isDarkTheme 
+                      ? "bg-muted hover:bg-muted/80" 
+                      : "bg-gray-200 hover:bg-gray-300"
+                  }`}
+                  aria-label="Переключить тему"
+                >
+                  <Icon name={isDarkTheme ? "Sun" : "Moon"} size={20} className={isDarkTheme ? "text-foreground" : "text-gray-800"} />
+                </button>
                 <Badge variant="outline" className="border-primary text-primary">
                   <Icon name="Trophy" size={14} className="mr-1" />13 место
                 </Badge>
@@ -220,7 +234,9 @@ const Index = () => {
           </div>
         </header>
 
-        <nav className="sticky top-[89px] z-40 bg-card/50 backdrop-blur-lg border-b border-border/50">
+        <nav className={`sticky top-[89px] z-40 backdrop-blur-lg border-b transition-colors ${
+          isDarkTheme ? "bg-card/50 border-border/50" : "bg-white/50 border-gray-200"
+        }`}>
           <div className="container mx-auto px-4">
             <div className="flex items-center gap-2 overflow-x-auto py-3">
               {menuItems.map((item) => (
@@ -230,7 +246,9 @@ const Index = () => {
                   className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all duration-200 whitespace-nowrap ${
                     activeSection === item.id
                       ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
-                      : "hover:bg-muted text-muted-foreground hover:text-foreground"
+                      : isDarkTheme 
+                        ? "hover:bg-muted text-muted-foreground hover:text-foreground"
+                        : "hover:bg-gray-100 text-gray-600 hover:text-gray-900"
                   }`}
                 >
                   <Icon name={item.icon as any} size={18} />
@@ -244,7 +262,7 @@ const Index = () => {
         <main className="container mx-auto px-4 py-12">
           {activeSection === "news" && (
             <div className="animate-fade-in">
-              <h2 className="text-4xl font-bold mb-8 font-montserrat flex items-center gap-3">
+              <h2 className={`text-4xl font-bold mb-8 font-montserrat flex items-center gap-3 ${isDarkTheme ? "text-foreground" : "text-gray-900"}`}>
                 <Icon name="Newspaper" size={36} className="text-primary" />
                 Новости команды
               </h2>
@@ -252,7 +270,7 @@ const Index = () => {
                 {news.map((item, index) => (
                   <Card 
                     key={item.id}
-                    className="bg-card/50 backdrop-blur-sm border-2 border-border hover:border-primary transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 overflow-hidden group animate-scale-in"
+                    className={`backdrop-blur-sm border-2 border-border hover:border-primary transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 overflow-hidden group animate-scale-in ${isDarkTheme ? "bg-card text-card-foreground" : "bg-white text-gray-900"}`}
                     style={{ animationDelay: `${0.1 * index}s`, animationFillMode: 'both' }}
                   >
                     <div className="p-6">
@@ -261,14 +279,14 @@ const Index = () => {
                         <div className="flex-1">
                           <div className="flex items-center gap-2 mb-2">
                             <Badge variant="secondary" className="text-xs">{item.category}</Badge>
-                            <span className="text-sm text-muted-foreground">{item.date}</span>
+                            <span className={`text-sm ${isDarkTheme ? "text-muted-foreground" : "text-gray-600"}`}>{item.date}</span>
                           </div>
-                          <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
+                          <h3 className={`text-xl font-bold mb-2 group-hover:text-primary transition-colors ${isDarkTheme ? "text-foreground" : "text-gray-900"}`}>
                             {item.title}
                           </h3>
                         </div>
                       </div>
-                      <p className="text-muted-foreground leading-relaxed">{item.content}</p>
+                      <p className={`leading-relaxed ${isDarkTheme ? "text-muted-foreground" : "text-gray-600"}`}>{item.content}</p>
                     </div>
                   </Card>
                 ))}
@@ -278,7 +296,7 @@ const Index = () => {
 
           {activeSection === "transfers" && (
             <div className="animate-fade-in">
-              <h2 className="text-4xl font-bold mb-8 font-montserrat flex items-center gap-3">
+              <h2 className={`text-4xl font-bold mb-8 font-montserrat flex items-center gap-3 ${isDarkTheme ? "text-foreground" : "text-gray-900"}`}>
                 <Icon name="ArrowLeftRight" size={36} className="text-primary" />
                 Трансферы
               </h2>
@@ -286,7 +304,7 @@ const Index = () => {
                 {transfers.map((transfer, index) => (
                   <Card 
                     key={transfer.id}
-                    className="bg-card/50 backdrop-blur-sm border-2 border-border hover:border-primary transition-all duration-300 animate-scale-in"
+                    className={`backdrop-blur-sm border-2 border-border hover:border-primary transition-all duration-300 animate-scale-in ${isDarkTheme ? "bg-card text-card-foreground" : "bg-white text-gray-900"}`}
                     style={{ animationDelay: `${0.1 * index}s`, animationFillMode: 'both' }}
                   >
                     <div className="p-6">
@@ -302,15 +320,15 @@ const Index = () => {
                         </div>
                         <div className="flex-1">
                           <div className="flex items-center gap-3 mb-2">
-                            <h3 className="text-2xl font-bold">{transfer.player}</h3>
+                            <h3 className={`text-2xl font-bold ${isDarkTheme ? "text-foreground" : "text-gray-900"}`}>{transfer.player}</h3>
                             <Badge>{transfer.position}</Badge>
                           </div>
-                          <div className="flex items-center gap-2 text-muted-foreground">
+                          <div className={`flex items-center gap-2 ${isDarkTheme ? "text-muted-foreground" : "text-gray-600"}`}>
                             <Icon name="Calendar" size={16} />
                             <span className="text-sm">{transfer.date}</span>
                             <span className="mx-2">•</span>
                             {transfer.type === "in" ? (
-                              <span className="text-sm">из {transfer.from}</span>
+                              <span className="text-sm">из Сиб.Снайперов</span>
                             ) : (
                               <span className="text-sm">уход</span>
                             )}
@@ -326,7 +344,7 @@ const Index = () => {
 
           {activeSection === "roster" && (
             <div className="animate-fade-in">
-              <h2 className="text-4xl font-bold mb-8 font-montserrat flex items-center gap-3">
+              <h2 className={`text-4xl font-bold mb-8 font-montserrat flex items-center gap-3 ${isDarkTheme ? "text-foreground" : "text-gray-900"}`}>
                 <Icon name="Users" size={36} className="text-primary" />
                 Состав команды
               </h2>
@@ -334,7 +352,7 @@ const Index = () => {
                 {players.map((player, index) => (
                   <Card 
                     key={player.number}
-                    className="bg-card/50 backdrop-blur-sm border-2 border-border hover:border-primary transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 overflow-hidden group animate-scale-in"
+                    className={`backdrop-blur-sm border-2 border-border hover:border-primary transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 overflow-hidden group animate-scale-in ${isDarkTheme ? "bg-card text-card-foreground" : "bg-white text-gray-900"}`}
                     style={{ animationDelay: `${0.1 * index}s`, animationFillMode: 'both' }}
                   >
                     <div className="p-6 relative">
@@ -347,37 +365,37 @@ const Index = () => {
                             {player.number}
                           </div>
                           <div>
-                            <h3 className="text-2xl font-bold text-foreground font-montserrat">{player.name}</h3>
+                            <h3 className={`text-2xl font-bold font-montserrat ${isDarkTheme ? "text-foreground" : "text-gray-900"}`}>{player.name}</h3>
                             <p className="text-sm text-accent font-semibold">{player.position}</p>
                           </div>
                         </div>
                         <div className="space-y-2 pt-4 border-t border-border/50">
-                          <p className="text-sm text-muted-foreground mb-3">{player.fullPosition}</p>
+                          <p className={`text-sm mb-3 ${isDarkTheme ? "text-muted-foreground" : "text-gray-600"}`}>{player.fullPosition}</p>
                           <div className="grid grid-cols-3 gap-2 text-center">
                             <div className="bg-muted/50 rounded-lg p-2">
-                              <div className="text-xs text-muted-foreground mb-1">Игры</div>
-                              <div className="text-lg font-bold">{player.games}</div>
+                              <div className={`text-xs mb-1 ${isDarkTheme ? "text-muted-foreground" : "text-gray-600"}`}>Игры</div>
+                              <div className={`text-lg font-bold ${isDarkTheme ? "text-foreground" : "text-gray-900"}`}>{player.games}</div>
                             </div>
                             {player.position === "GK" ? (
                               <>
                                 <div className="bg-muted/50 rounded-lg p-2">
-                                  <div className="text-xs text-muted-foreground mb-1">Сэйвы</div>
-                                  <div className="text-lg font-bold">{player.saves}</div>
+                                  <div className={`text-xs mb-1 ${isDarkTheme ? "text-muted-foreground" : "text-gray-600"}`}>Сэйвы</div>
+                                  <div className={`text-lg font-bold ${isDarkTheme ? "text-foreground" : "text-gray-900"}`}>{player.saves}</div>
                                 </div>
                                 <div className="bg-muted/50 rounded-lg p-2">
-                                  <div className="text-xs text-muted-foreground mb-1">Проп.</div>
-                                  <div className="text-lg font-bold">{player.goalsAgainst}</div>
+                                  <div className={`text-xs mb-1 ${isDarkTheme ? "text-muted-foreground" : "text-gray-600"}`}>Проп.</div>
+                                  <div className={`text-lg font-bold ${isDarkTheme ? "text-foreground" : "text-gray-900"}`}>{player.goalsAgainst}</div>
                                 </div>
-                              </>
+                              <>
                             ) : (
                               <>
                                 <div className="bg-muted/50 rounded-lg p-2">
-                                  <div className="text-xs text-muted-foreground mb-1">Голы</div>
-                                  <div className="text-lg font-bold">{player.goals}</div>
+                                  <div className={`text-xs mb-1 ${isDarkTheme ? "text-muted-foreground" : "text-gray-600"}`}>Голы</div>
+                                  <div className={`text-lg font-bold ${isDarkTheme ? "text-foreground" : "text-gray-900"}`}>{player.goals}</div>
                                 </div>
                                 <div className="bg-muted/50 rounded-lg p-2">
-                                  <div className="text-xs text-muted-foreground mb-1">Пасы</div>
-                                  <div className="text-lg font-bold">{player.assists}</div>
+                                  <div className={`text-xs mb-1 ${isDarkTheme ? "text-muted-foreground" : "text-gray-600"}`}>Пасы</div>
+                                  <div className={`text-lg font-bold ${isDarkTheme ? "text-foreground" : "text-gray-900"}`}>{player.assists}</div>
                                 </div>
                               </>
                             )}
@@ -393,7 +411,7 @@ const Index = () => {
 
           {activeSection === "schedule" && (
             <div className="animate-fade-in">
-              <h2 className="text-4xl font-bold mb-8 font-montserrat flex items-center gap-3">
+              <h2 className={`text-4xl font-bold mb-8 font-montserrat flex items-center gap-3 ${isDarkTheme ? "text-foreground" : "text-gray-900"}`}>
                 <Icon name="Calendar" size={36} className="text-primary" />
                 Расписание матчей
               </h2>
@@ -401,23 +419,23 @@ const Index = () => {
                 {schedule.map((match, index) => (
                     <Card 
                       key={match.id}
-                      className="bg-card/50 backdrop-blur-sm border-2 border-primary/50 hover:border-primary transition-all duration-300 mb-4 animate-scale-in"
+                      className={`backdrop-blur-sm border-2 border-primary/50 hover:border-primary transition-all duration-300 mb-4 animate-scale-in ${isDarkTheme ? "bg-card text-card-foreground" : "bg-white text-gray-900"}`}
                       style={{ animationDelay: `${0.1 * index}s`, animationFillMode: 'both' }}
                     >
                       <div className="p-6">
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-6">
                             <div className="text-center">
-                              <div className="text-sm text-muted-foreground mb-1">Дата</div>
-                              <div className="font-bold">{match.date}</div>
+                              <div className={`text-sm mb-1 ${isDarkTheme ? "text-muted-foreground" : "text-gray-600"}`}>Дата</div>
+                              <div className={`font-bold ${isDarkTheme ? "text-foreground" : "text-gray-900"}`}>{match.date}</div>
                               <div className="text-xl font-bold text-primary mt-1">{match.time}</div>
                             </div>
                             <div className="w-px h-16 bg-border" />
                             <div>
                               <div className="flex items-center gap-3 mb-2">
-                                <span className="text-2xl font-bold">SKA 1946</span>
-                                <Icon name="Swords" size={20} className="text-muted-foreground" />
-                                <span className="text-2xl font-bold">{match.opponent}</span>
+                                <span className={`text-2xl font-bold ${isDarkTheme ? "text-foreground" : "text-gray-900"}`}>SKA 1946</span>
+                                <Icon name="Swords" size={20} className={isDarkTheme ? "text-muted-foreground" : "text-gray-600"} />
+                                <span className={`text-2xl font-bold ${isDarkTheme ? "text-foreground" : "text-gray-900"}`}>{match.opponent}</span>
                               </div>
                               <Badge variant={match.location === "Дома" ? "default" : "secondary"}>
                                 <Icon name={match.location === "Дома" ? "Home" : "Plane"} size={14} className="mr-1" />
@@ -435,26 +453,26 @@ const Index = () => {
 
           {activeSection === "standings" && (
             <div className="animate-fade-in">
-              <h2 className="text-4xl font-bold mb-8 font-montserrat flex items-center gap-3">
+              <h2 className={`text-4xl font-bold mb-8 font-montserrat flex items-center gap-3 ${isDarkTheme ? "text-foreground" : "text-gray-900"}`}>
                 <Icon name="Award" size={36} className="text-primary" />
                 Турнирная таблица VFHL|PUCK
               </h2>
               <div className="max-w-5xl mx-auto">
-                <Card className="bg-card/50 backdrop-blur-sm border-2 border-border overflow-hidden">
+                <Card className={`backdrop-blur-sm border-2 border-border overflow-hidden ${isDarkTheme ? "bg-card text-card-foreground" : "bg-white text-gray-900"}`}>
                   <div className="overflow-x-auto">
                     <table className="w-full">
                       <thead className="bg-muted/50">
                         <tr className="border-b-2 border-border">
-                          <th className="px-6 py-4 text-left text-sm font-bold text-foreground/80 uppercase tracking-wider">#</th>
-                          <th className="px-6 py-4 text-left text-sm font-bold text-foreground/80 uppercase tracking-wider">Команда</th>
-                          <th className="px-6 py-4 text-center text-sm font-bold text-foreground/80 uppercase tracking-wider">И</th>
-                          <th className="px-6 py-4 text-center text-sm font-bold text-foreground/80 uppercase tracking-wider">В</th>
-                          <th className="px-6 py-4 text-center text-sm font-bold text-foreground/80 uppercase tracking-wider">ВО</th>
-                          <th className="px-6 py-4 text-center text-sm font-bold text-foreground/80 uppercase tracking-wider">ПО</th>
-                          <th className="px-6 py-4 text-center text-sm font-bold text-foreground/80 uppercase tracking-wider">П</th>
-                          <th className="px-6 py-4 text-center text-sm font-bold text-foreground/80 uppercase tracking-wider">ШЗ</th>
-                          <th className="px-6 py-4 text-center text-sm font-bold text-foreground/80 uppercase tracking-wider">ШП</th>
-                          <th className="px-6 py-4 text-center text-sm font-bold text-foreground/80 uppercase tracking-wider">О</th>
+                          <th className={`px-6 py-4 text-left text-sm font-bold uppercase tracking-wider ${isDarkTheme ? "text-foreground/80" : "text-gray-700"}`}>#</th>
+                          <th className={`px-6 py-4 text-left text-sm font-bold uppercase tracking-wider ${isDarkTheme ? "text-foreground/80" : "text-gray-700"}`}>Команда</th>
+                          <th className={`px-6 py-4 text-center text-sm font-bold uppercase tracking-wider ${isDarkTheme ? "text-foreground/80" : "text-gray-700"}`}>И</th>
+                          <th className={`px-6 py-4 text-center text-sm font-bold uppercase tracking-wider ${isDarkTheme ? "text-foreground/80" : "text-gray-700"}`}>В</th>
+                          <th className={`px-6 py-4 text-center text-sm font-bold uppercase tracking-wider ${isDarkTheme ? "text-foreground/80" : "text-gray-700"}`}>ВО</th>
+                          <th className={`px-6 py-4 text-center text-sm font-bold uppercase tracking-wider ${isDarkTheme ? "text-foreground/80" : "text-gray-700"}`}>ПО</th>
+                          <th className={`px-6 py-4 text-center text-sm font-bold uppercase tracking-wider ${isDarkTheme ? "text-foreground/80" : "text-gray-700"}`}>П</th>
+                          <th className={`px-6 py-4 text-center text-sm font-bold uppercase tracking-wider ${isDarkTheme ? "text-foreground/80" : "text-gray-700"}`}>ШЗ</th>
+                          <th className={`px-6 py-4 text-center text-sm font-bold uppercase tracking-wider ${isDarkTheme ? "text-foreground/80" : "text-gray-700"}`}>ШП</th>
+                          <th className={`px-6 py-4 text-center text-sm font-bold uppercase tracking-wider ${isDarkTheme ? "text-foreground/80" : "text-gray-700"}`}>О</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -469,25 +487,25 @@ const Index = () => {
                           >
                             <td className="px-6 py-4">
                               <span className={`inline-flex items-center justify-center w-8 h-8 rounded-full font-bold ${
-                                team.isCurrentTeam ? 'bg-primary text-primary-foreground' : 'bg-muted text-foreground'
+                                team.isCurrentTeam ? 'bg-primary text-primary-foreground' : isDarkTheme ? 'bg-muted text-foreground' : 'bg-gray-200 text-gray-900'
                               }`}>
                                 {team.position}
                               </span>
                             </td>
                             <td className="px-6 py-4">
-                              <span className={`font-semibold ${team.isCurrentTeam ? 'text-primary text-lg' : 'text-foreground'}`}>
+                              <span className={`font-semibold ${team.isCurrentTeam ? 'text-primary text-lg' : isDarkTheme ? 'text-foreground' : 'text-gray-900'}`}>
                                 {team.team}
                               </span>
                             </td>
-                            <td className="px-6 py-4 text-center text-muted-foreground">{team.games}</td>
-                            <td className="px-6 py-4 text-center text-muted-foreground">{team.wins}</td>
-                            <td className="px-6 py-4 text-center text-muted-foreground">{team.winsOT}</td>
-                            <td className="px-6 py-4 text-center text-muted-foreground">{team.lossesOT}</td>
-                            <td className="px-6 py-4 text-center text-muted-foreground">{team.losses}</td>
-                            <td className="px-6 py-4 text-center text-muted-foreground">{team.goalsFor}</td>
-                            <td className="px-6 py-4 text-center text-muted-foreground">{team.goalsAgainst}</td>
+                            <td className={`px-6 py-4 text-center ${isDarkTheme ? "text-muted-foreground" : "text-gray-600"}`}>{team.games}</td>
+                            <td className={`px-6 py-4 text-center ${isDarkTheme ? "text-muted-foreground" : "text-gray-600"}`}>{team.wins}</td>
+                            <td className={`px-6 py-4 text-center ${isDarkTheme ? "text-muted-foreground" : "text-gray-600"}`}>{team.winsOT}</td>
+                            <td className={`px-6 py-4 text-center ${isDarkTheme ? "text-muted-foreground" : "text-gray-600"}`}>{team.lossesOT}</td>
+                            <td className={`px-6 py-4 text-center ${isDarkTheme ? "text-muted-foreground" : "text-gray-600"}`}>{team.losses}</td>
+                            <td className={`px-6 py-4 text-center ${isDarkTheme ? "text-muted-foreground" : "text-gray-600"}`}>{team.goalsFor}</td>
+                            <td className={`px-6 py-4 text-center ${isDarkTheme ? "text-muted-foreground" : "text-gray-600"}`}>{team.goalsAgainst}</td>
                             <td className="px-6 py-4 text-center">
-                              <span className={`font-bold ${team.isCurrentTeam ? 'text-primary text-lg' : 'text-foreground'}`}>
+                              <span className={`font-bold ${team.isCurrentTeam ? 'text-primary text-lg' : isDarkTheme ? 'text-foreground' : 'text-gray-900'}`}>
                                 {team.points}
                               </span>
                             </td>
@@ -503,7 +521,7 @@ const Index = () => {
         </main>
 
         <footer className="container mx-auto px-4 py-12 text-center border-t border-border/50 mt-12">
-          <div className="flex items-center justify-center gap-2 text-muted-foreground">
+          <div className={`flex items-center justify-center gap-2 ${isDarkTheme ? "text-muted-foreground" : "text-gray-600"}`}>
             <Icon name="Shield" size={20} className="text-primary" />
             <p className="text-sm">SKA 1946 • VFHL|PUCK League • Season 2024/25</p>
           </div>
