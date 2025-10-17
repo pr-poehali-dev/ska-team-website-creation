@@ -310,7 +310,7 @@ const Index = () => {
                             <span className="text-sm">{transfer.date}</span>
                             <span className="mx-2">•</span>
                             {transfer.type === "in" ? (
-                              <span className="text-sm">из {transfer.from}</span>
+                              <span className="text-sm">из Сиб.Снайперов</span>
                             ) : (
                               <span className="text-sm">уход</span>
                             )}
