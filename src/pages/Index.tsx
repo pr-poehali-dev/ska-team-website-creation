@@ -266,22 +266,12 @@ const Index = () => {
 
         <main className="container mx-auto px-4 py-12">
           {activeSection === "news" && (
-            <div className="animate-fade-in relative">
-              <div 
-                className="absolute inset-0 opacity-30 bg-cover bg-top rounded-lg"
-                style={{
-                  backgroundImage: "url('https://cdn.poehali.dev/projects/42a778a7-7187-4056-9eee-7c5cddf107d8/files/5fac8c2f-74fd-47d9-bfe8-6b174a26dc33.jpg')",
-                  backgroundSize: "100% 50%",
-                  backgroundRepeat: "no-repeat",
-                  filter: isDarkTheme ? "brightness(0.6)" : "brightness(0.8)"
-                }}
-              />
-              <div className="relative z-10">
-                <h2 className={`text-4xl font-bold mb-8 font-montserrat flex items-center gap-3 ${isDarkTheme ? "text-foreground" : "text-gray-900"}`}>
-                  <Icon name="Newspaper" size={36} className="text-primary" />
-                  Новости команды
-                </h2>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="animate-fade-in">
+              <h2 className={`text-4xl font-bold mb-8 font-montserrat flex items-center gap-3 ${isDarkTheme ? "text-foreground" : "text-gray-900"}`}>
+                <Icon name="Newspaper" size={36} className="text-primary" />
+                Новости команды
+              </h2>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {news.map((item, index) => (
                   <Card 
                     key={item.id}
@@ -305,7 +295,6 @@ const Index = () => {
                     </div>
                   </Card>
                 ))}
-                </div>
               </div>
             </div>
           )}
