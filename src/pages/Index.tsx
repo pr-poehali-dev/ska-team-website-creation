@@ -57,7 +57,7 @@ const Index = () => {
       player: "alexy",
       type: "out",
       to: "Торпедо",
-      date: "20 августа 2024",
+      date: "10.10.25",
       position: "RW"
     }
   ];
