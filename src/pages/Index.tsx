@@ -373,7 +373,7 @@ const Index = () => {
                           </div>
                           <div>
                             <h3 className={`text-2xl font-bold font-montserrat ${isDarkTheme ? "text-foreground" : "text-gray-900"}`}>{player.name}</h3>
-                            <p className="text-sm text-accent font-semibold">{player.position}</p>
+                            <p className={`text-sm font-semibold ${isDarkTheme ? "text-gray-400" : "text-gray-500"}`}>{player.position}</p>
                           </div>
                         </div>
                         <div className="space-y-2 pt-4 border-t border-border/50">
